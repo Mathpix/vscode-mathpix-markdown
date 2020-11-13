@@ -1,14 +1,6 @@
 # Mathpix Markdown
 
-### Issues
-
-- Needs to auto-reload when changing settings
-  - https://github.com/microsoft/vscode/issues/70936
-- Equation numbering is wrong, starts at 7 for SYNTAX.md
-  - apparently related to reloading, doesn't reset
-- Lines not breaking between paragraphs, etc...
-
-### Building / testing locally
+## Building / testing locally
 
 ```
 git clone git@github.com:Mathpix/mathpix-markdown-vscode.git
