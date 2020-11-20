@@ -23,6 +23,11 @@
 		"configuration": {
 			"title": "Mathpix Markdown",
 			"properties": {
+				"mathpix-markdown.htmlTags": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable htmlTags rendering."
+				},
 				"mathpix-markdown.latex": {
 					"type": "boolean",
 					"default": true,
@@ -37,6 +42,16 @@
 					"type": "boolean",
 					"default": true,
 					"description": "Enable chemistry rendering with SMILES support."
+				},
+				"mathpix-markdown-chemistry.disableColors": {
+					"type": "boolean",
+					"default": true,
+					"description": "Disable all coloring."
+				},
+				"mathpix-markdown-chemistry.disableGradient": {
+					"type": "boolean",
+					"default": true,
+					"description": "Disable gradient coloring."
 				},
 				"mathpix-markdown.dark_mode": {
 					"type": "boolean",
@@ -65,6 +80,6 @@
 		"webpack-cli": "^3.3.11"
 	},
 	"dependencies": {
-		"mathpix-markdown-it": "^1.0.31"
+		"mathpix-markdown-it": "https://github.com/Mathpix/mathpix-markdown-it.git#dev/olga/vscode-mathpix-markdown"
 	}
 }

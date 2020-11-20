@@ -1,47 +1,60 @@
 const vscode = require('vscode');
 
-const MathJaxPlugin = require('../node_modules/mathpix-markdown-it/lib/markdown/mdPluginRaw.js').default;
-const highlightPlugin = require('../node_modules/mathpix-markdown-it/lib/markdown/mdHighlightCodePlugin.js').default;
-const mdPluginText = require('../node_modules/mathpix-markdown-it/lib/markdown/mdPluginText.js').default;
-const mdPluginTOC = require('../node_modules/mathpix-markdown-it/lib/markdown/mdPluginTOC.js').default;
-const mdPluginAnchor = require('../node_modules/mathpix-markdown-it/lib/markdown/mdPluginAnchor.js').default;
-const mdPluginTableTabular = require('../node_modules/mathpix-markdown-it/lib/markdown/mdPluginTableTabular.js').default;
-const mdPluginList = require('../node_modules/mathpix-markdown-it/lib/markdown/mdPluginLists.js').default;
-const mdChemistry = require('../node_modules/mathpix-markdown-it/lib/markdown/md-chemistry').default;
+const { mathpixMarkdownPlugin, initMathpixMarkdown } = require('mathpix-markdown-it');
+
+const shouldRefreshConfs = [
+  'mathpix-markdown.dark_mode',
+  'mathpix-markdown.latex',
+  'mathpix-markdown.math',
+  'mathpix-markdown.chemistry',
+  'mathpix-markdown.htmlTags',
+  'markdown.preview.breaks',
+  'mathpix-markdown-chemistry.disableColors',
+  'mathpix-markdown-chemistry.disableGradient'
+];
+
+const getMmdOptions = () => {
+  const darkMode = vscode.workspace.getConfiguration('mathpix-markdown').get('dark_mode');
+  const htmlTags = vscode.workspace.getConfiguration('mathpix-markdown').get('htmlTags');
+  const latexMode = vscode.workspace.getConfiguration('mathpix-markdown').get('latex');
+  const mathMode = vscode.workspace.getConfiguration('mathpix-markdown').get('math');
+  const chemMode = vscode.workspace.getConfiguration('mathpix-markdown').get('chemistry');
+  const disableColors = vscode.workspace.getConfiguration('mathpix-markdown-chemistry').get('disableColors');
+  const disableGradient = vscode.workspace.getConfiguration('mathpix-markdown-chemistry').get('disableGradient');
+
+  return {
+    width: 1200,
+    htmlTags: htmlTags,
+    mathJax: {},
+    outMath: {},
+    auto: false,
+    smiles: {
+      theme: darkMode ? 'dark' : 'light',
+      disableColors: disableColors,
+      disableGradient: disableGradient
+    }
+  }
+};
+
+
+const useMathpixMarkdownPlugin = (md) => {  
+  md = initMathpixMarkdown(md, getMmdOptions);
+  md.use(mathpixMarkdownPlugin, {});
+  return md;
+};
 
 function activate(ctx) {
   ctx.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration('mathpix-markdown.dark_mode')) {
-        vscode.commands.executeCommand('markdown.preview.refresh');
+      if (shouldRefreshConfs.some((c) => e.affectsConfiguration(c))) {
+        vscode.commands.executeCommand('markdown.preview.refresh')
       }
     })
   );
 
-  let darkMode = vscode.workspace.getConfiguration('mathpix-markdown.dark_mode');
-  let latexMode = vscode.workspace.getConfiguration('mathpix-markdown.latex');
-  let mathMode = vscode.workspace.getConfiguration('mathpix-markdown.math');
-  let chemMode = vscode.workspace.getConfiguration('mathpix-markdown.chemistry');
-
-  let smileConfig = {
-    theme: 'light',
-  };
-
-  if (darkMode) {
-    smileConfig.theme = 'dark';
-  }
-
   return {
     extendMarkdownIt(md) {
-      return md
-        .use(mdPluginTOC)
-        .use(mdPluginTableTabular, { width: 1200, outMath: {} })
-        .use(mdPluginList, { width: 1200, outMath: {} })
-        .use(MathJaxPlugin({ width: 1200, outMath: {} }))
-        .use(mdPluginText())
-        .use(highlightPlugin, { auto: false })
-        .use(mdPluginAnchor)
-        .use(mdChemistry, smileConfig);
+      return useMathpixMarkdownPlugin(md);
     },
   };
 }
