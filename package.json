@@ -80,6 +80,6 @@
 		"webpack-cli": "^3.3.11"
 	},
 	"dependencies": {
-		"mathpix-markdown-it": "https://github.com/Mathpix/mathpix-markdown-it.git#dev/olga/vscode-mathpix-markdown"
+		"mathpix-markdown-it": "^1.0.35"
 	}
 }
