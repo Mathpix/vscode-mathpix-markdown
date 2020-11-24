@@ -2,9 +2,28 @@
 
 ![](./images/screenshot.png)
 
+## Features 
+
+- Enables enhanced markdown syntax to be rendered in markdown previews
+- Enables a subset of LaTeX commands to be rendered in markdown previews
+- Enables SMILES chemistry syntax to be rendered in markdown previews
+
+
 ## Extension Installation
 
-Open VSCode and open the command pallete (`f1` key) and enter `ext install @id:mathpix.vscode-mathpix-markdown` or search for `@id:mathpix.vscode-mathpix-markdown` in the extensions section.
+The extension can be installed in several ways:
+
+### From extensions search (`ctrl-shift-x` or `cmd-shift-x`):
+
+Enter `@id:mathpix.vscode-mathpix-markdown`
+
+### From quick open (`ctrl-p` or `cmd-p`):
+
+`ext install @id:mathpix.vscode-mathpix-markdown`
+
+### From CLI:
+
+`code --install-extension mathpix.vscode-mathpix-markdown`
 
 ## Mathpix Markdown Usage
 
