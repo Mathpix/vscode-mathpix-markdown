@@ -4,7 +4,7 @@
 
 ## Extension Installation
 
-Open VSCode and open the command pallete (`f1` key) then type `ext install mathpix-markdown` or search for mathpix-markdown in the extensions section.
+Open VSCode and open the command pallete (`f1` key) and enter `ext install @id:mathpix.vscode-mathpix-markdown` or search for `@id:mathpix.vscode-mathpix-markdown` in the extensions section.
 
 ## Mathpix Markdown Usage
 
