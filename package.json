@@ -71,6 +71,9 @@
 		"vscode:prepublish": "webpack --mode production",
 		"webpack": "webpack --mode development",
 		"webpack-dev": "webpack --mode development --watch",
+		"publish-patch": "vsce publish patch -m 'Update extension version to %s'",
+		"publish-minor": "vsce publish minor -m 'Update extension version to %s'",
+		"publish-major": "vsce publish major -m 'Update extension version to %s'",
 		"lint": "eslint ./src --ext .js"
 	},
 	"devDependencies": {
