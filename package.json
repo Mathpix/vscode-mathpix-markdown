@@ -4,7 +4,7 @@
 	"author": "Mathpix",
 	"displayName": "Mathpix Markdown",
 	"description": "Enable rendering Mathpix Markdown with latex and chemistry support.",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "mathpix",
 	"repository": {
 		"type": "git",
