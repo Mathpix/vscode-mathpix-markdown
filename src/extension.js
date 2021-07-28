@@ -28,9 +28,9 @@ const getMmdOptions = () => {
 };
 
 
-const useMathpixMarkdownPlugin = (md) => {  
+const useMathpixMarkdownPlugin = (md) => {
   md = initMathpixMarkdown(md, getMmdOptions);
-  md.use(mathpixMarkdownPlugin, {});
+  md.use(mathpixMarkdownPlugin, {enableFileLinks: true});
   return md;
 };
 
