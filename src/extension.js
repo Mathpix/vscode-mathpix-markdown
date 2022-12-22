@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 
-const { mathpixMarkdownPlugin, initMathpixMarkdown } = require('mathpix-markdown-it');
+const { mathpixMarkdownPlugin, initMathpixMarkdown, mdPluginCollapsible } = require('mathpix-markdown-it');
 
 const shouldRefreshConfs = [
   'markdown.preview.breaks',
@@ -30,7 +30,8 @@ const getMmdOptions = () => {
 
 const useMathpixMarkdownPlugin = (md) => {  
   md = initMathpixMarkdown(md, getMmdOptions);
-  md.use(mathpixMarkdownPlugin, {});
+  md.use(mathpixMarkdownPlugin, {})
+    .use(mdPluginCollapsible);
   return md;
 };
 
