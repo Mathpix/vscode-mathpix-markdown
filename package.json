@@ -20,6 +20,9 @@
 	"categories": [
 		"Other"
 	],
+	"extensionKind": [
+		"workspace"
+	],
 	"keywords": [
 		"vscode",
 		"markdown",
